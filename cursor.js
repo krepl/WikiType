@@ -5,8 +5,7 @@ class Cursor {
     constructor(onCompletion) {
         this.onCompletion = onCompletion;
         this.token_units = $('.token-unit');
-        this.content_length = this.token_units.length;
-        console.assert(this.content_length > 0, 'Cursor cannot have a content-length of 0.');
+        console.assert(this.token_units.length > 0, 'Cursor cannot have a content-length of 0.');
         this.cursor_idx = 0;
         var first_token_unit = this.tokenUnitAt(0);
         console.assert(first_token_unit.is('.token-unit'), 'First token-unit could not be found.');
@@ -14,7 +13,7 @@ class Cursor {
     }
 
     canAdvance() {
-        return this.cursor_idx < this.content_length;
+        return this.cursor_idx < this.token_units.length;
     }
 
     advance() {
@@ -48,7 +47,7 @@ class Cursor {
     }
 
     nextTokenUnit(token_unit) {
-        if (this.cursor_idx >= this.content_length) {
+        if (this.cursor_idx >= this.token_units.length) {
             return null;
         }
         return this.tokenUnitAt(this.cursor_idx+1);

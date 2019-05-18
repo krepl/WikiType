@@ -25,7 +25,7 @@ var onCompletion = () => {
     $("body").off('keydown'); // disable additional input
     displayResults();
 };
-var cursor = new Cursor(completed);
+var cursor = new Cursor(onCompletion);
 
 // NOTE: I believe we need to wrap `cursor.processKeyDown` in another lambda
 // because the wrapper lambda captures the Cursor object that we've defined.

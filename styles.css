@@ -1,0 +1,58 @@
+hr {
+    display: block;
+    margin-before: 0.5em;
+    margin-after: 0.5em;
+    margin-start: auto;
+    margin-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.line {
+    margin-top: 5px;
+    display: block;
+}
+
+#article-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.cursor {
+    border-bottom: 3px solid #0a6bf9;
+}
+
+.token-unit {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 35px;
+}
+
+.correct {
+    background-color: #e7fdd4;
+    color: #1b6613;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.incorrect {
+    background-color: #fabecb;
+    color: #850008;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.fixed {
+    background-color: #fceab4;
+    color: #1d830c;
+    border-radius: 4px;
+    white-space: nowrap;
+}

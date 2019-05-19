@@ -70,6 +70,8 @@ class Cursor {
                 this.retreat();
             }
             return;
+        } else if (event.metaKey || event.ctrlKey) {
+            return;
         }
         if (this.canAdvance()) {
             var target_character = this.current_token_unit.text().charCodeAt(0);

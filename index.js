@@ -25,7 +25,10 @@ function appendLineToArticleContent(line) {
 }
 
 function setArticleTitle(title, url) {
-    $("title").text(title + " - WikiType");
+    var page_title = $(title).text(); // title with HTML tags stripped out
+    page_title = page_title === "" ? title : page_title;
+    $("title").text(page_title + " - WikiType");
+
     if (url !== undefined) {
         title = "<a href='" + url + "'>" + title + "</a>";
     }

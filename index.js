@@ -25,11 +25,13 @@ function appendLineToArticleContent(line) {
 }
 
 function setArticleTitle(title, url) {
-    $("title").prepend(title);
+    $("title").text(title + " - WikiType");
     if (url !== undefined) {
         title = "<a href='" + url + "'>" + title + "</a>";
     }
-    $("#article-title").append(title);
+    var article_title = $("#article-title");
+    article_title.empty();
+    article_title.append(title);
 }
 
 function displayResults() {
@@ -57,7 +59,7 @@ function displayResults() {
 function initializeExercise(title, url) {
     // define actions to perform on completion
     var onCompletion = () => {
-        $("body").off("keydown"); // disable additional input
+        $("#article-content").off("keydown"); // disable additional input
         displayResults();
     };
     var cursor = new Cursor(onCompletion);
@@ -67,9 +69,10 @@ function initializeExercise(title, url) {
     //
     // Otherwise, `this` does not refer to the Cursor object in the instance
     // methods. This is a quirk of how JavaScript defines the `this` keyword.
-    $("body").keydown((event) => {
+    $("#article-content").keydown((event) => {
         cursor.processKeyDown(event);
         if (event.key === " ") {
+            // don't scroll the page when a space is entered
             return false;
         }
     });
@@ -77,8 +80,13 @@ function initializeExercise(title, url) {
     setArticleTitle(title, url);
 }
 
-// load a sample extract and convert it into an exercise
-Page.getJSONRandomSummary((data) => {
+function initializeExerciseFromJSON(data) {
+    if (data.type === "disambiguation") {
+        // TODO
+        console.log("Disambiguation:");
+        console.log(data);
+    }
+
     // clear any existing article content
     $("#article-content").empty();
 
@@ -110,4 +118,17 @@ Page.getJSONRandomSummary((data) => {
     appendLineToArticleContent(curr_line);
 
     initializeExercise(data.titles.display, data.content_urls.desktop.page);
+}
+
+// load a sample extract and convert it into an exercise
+Page.getJSONRandomSummary((data) => initializeExerciseFromJSON(data));
+
+$("#requested-article").keyup((event) => {
+    if (event.key === "Enter") {
+        var requested_article = $("#requested-article").val();
+        (new Page(requested_article)).getJSONSummary((data) => initializeExerciseFromJSON(data));
+        $("#article-content").focus();
+    }
 });
+
+$("#article-content").focus();

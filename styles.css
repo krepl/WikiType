@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 hr {
     display: block;
     margin-before: 0.5em;
@@ -26,6 +30,10 @@ ul {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
 }
+
+/*#article-content:focus {*/
+    /*outline: none;*/
+/*}*/
 
 .cursor {
     border-bottom: 3px solid #0a6bf9;

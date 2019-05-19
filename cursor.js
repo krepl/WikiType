@@ -1,14 +1,14 @@
-const NBSP_CHAR_CODE = '\u00a0'.charCodeAt(0);
-const SPACE_CHAR_CODE = '\u0020'.charCodeAt(0);
+const NBSP_CHAR_CODE = "\u00a0".charCodeAt(0);
+const SPACE_CHAR_CODE = "\u0020".charCodeAt(0);
 
 class Cursor {
     constructor(onCompletion) {
         this.onCompletion = onCompletion;
-        this.token_units = $('.token-unit');
-        console.assert(this.token_units.length > 0, 'Cursor cannot have a content-length of 0.');
+        this.token_units = $(".token-unit");
+        console.assert(this.token_units.length > 0, "Cursor cannot have a content-length of 0.");
         this.cursor_idx = 0;
         var first_token_unit = this.tokenUnitAt(0);
-        console.assert(first_token_unit.is('.token-unit'), 'First token-unit could not be found.');
+        console.assert(first_token_unit.is(".token-unit"), "First token-unit could not be found.");
         this.current_token_unit = first_token_unit;
     }
 
@@ -18,12 +18,12 @@ class Cursor {
 
     advance() {
         if (this.canAdvance()) {
-            this.current_token_unit.removeClass('cursor');
+            this.current_token_unit.removeClass("cursor");
             var next_token_unit = this.nextTokenUnit(this.current_token_unit);
             this.cursor_idx++;
-            if (next_token_unit !== null && next_token_unit.is('.token-unit')) {
+            if (next_token_unit !== null && next_token_unit.is(".token-unit")) {
                 this.current_token_unit = next_token_unit;
-                this.current_token_unit.addClass('cursor');
+                this.current_token_unit.addClass("cursor");
             } else {
                 this.onCompletion();
             }
@@ -36,12 +36,12 @@ class Cursor {
 
     retreat() {
         if (this.canRetreat()) {
-            this.current_token_unit.removeClass('cursor');
+            this.current_token_unit.removeClass("cursor");
             var prev_token_unit = this.previousTokenUnit(this.current_token_unit);
             this.cursor_idx--;
             if (prev_token_unit !== null) {
                 this.current_token_unit = prev_token_unit;
-                this.current_token_unit.addClass('cursor');
+                this.current_token_unit.addClass("cursor");
             }
         }
     }
@@ -77,16 +77,16 @@ class Cursor {
                 target_character = SPACE_CHAR_CODE;
             }
             if (event.key.charCodeAt(0) === target_character) {
-                if (this.current_token_unit.hasClass('incorrect')) {
-                    this.current_token_unit.removeClass('incorrect');
-                    this.current_token_unit.addClass('fixed');
-                } else if (!this.current_token_unit.hasClass('fixed')) {
-                    this.current_token_unit.addClass('correct');
+                if (this.current_token_unit.hasClass("incorrect")) {
+                    this.current_token_unit.removeClass("incorrect");
+                    this.current_token_unit.addClass("fixed");
+                } else if (!this.current_token_unit.hasClass("fixed")) {
+                    this.current_token_unit.addClass("correct");
                 }
             } else {
-                this.current_token_unit.removeClass('correct');
-                this.current_token_unit.removeClass('fixed');
-                this.current_token_unit.addClass('incorrect');
+                this.current_token_unit.removeClass("correct");
+                this.current_token_unit.removeClass("fixed");
+                this.current_token_unit.addClass("incorrect");
             }
             this.advance();
         }

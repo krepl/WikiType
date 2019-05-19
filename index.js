@@ -82,8 +82,6 @@ Page.getJSONRandomSummary((data) => {
     // clear any existing article content
     $("#article-content").empty();
 
-    console.log(data);
-
     // take the first roughly ARTICLE_LENGTH characters worth of sentences from
     // the article data
     console.assert(data.extract.length > 0, "Article content fetched has length 0.");
@@ -95,10 +93,9 @@ Page.getJSONRandomSummary((data) => {
     }
     var tokens = tokenize(extract.slice(0, num_sentences).join("").trim());
 
-    var article_content = "";
-    var curr_line_width = 0;
-    var curr_line = "";
-    for (var i = 0; i < tokens.length; i++) {
+    var curr_line = tokenToTokenElement(tokens[0]);
+    var curr_line_width = tokens[0].length;
+    for (var i = 1; i < tokens.length; i++) {
         if (curr_line_width + tokens[i].length < LINE_WIDTH) {
             // We haven't exceeded the maximum line width. Append a new token
             // to the current line.
@@ -107,12 +104,10 @@ Page.getJSONRandomSummary((data) => {
         } else {
             appendLineToArticleContent(curr_line);
             curr_line = tokenToTokenElement(tokens[i]);
-            curr_line_width = 0;
+            curr_line_width = tokens[i].length;
         }
     }
-    if (curr_line_width !== 0) {
-        appendLineToArticleContent(curr_line);
-    }
+    appendLineToArticleContent(curr_line);
 
     initializeExercise(data.titles.display, data.content_urls.desktop.page);
 });

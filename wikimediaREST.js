@@ -4,6 +4,8 @@ const WIKI_BASE_URL = WIKI_DOMAIN + "/api/rest_v1";
 class Page {
     constructor(title) {
         this.title = title;
+        this.getJSONSummary = this.getJSONSummary.bind(this);
+        this.getJSONRandomSummary = this.getJSONRandomSummary.bind(this);
     }
 
     getJSONSummary(callback) {

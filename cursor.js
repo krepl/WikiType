@@ -10,6 +10,15 @@ class Cursor {
         var first_token_unit = this.tokenUnitAt(0);
         console.assert(first_token_unit.is(".token-unit"), "First token-unit could not be found.");
         this.current_token_unit = first_token_unit;
+
+        this.processKeyDown = this.processKeyDown.bind(this);
+        this.canAdvance = this.canAdvance.bind(this);
+        this.advance = this.advance.bind(this);
+        this.canRetreat = this.canRetreat.bind(this);
+        this.retreat = this.retreat.bind(this);
+        this.nextTokenUnit = this.nextTokenUnit.bind(this);
+        this.tokenUnitAt = this.tokenUnitAt.bind(this);
+        this.previousTokenUnit = this.previousTokenUnit.bind(this);
     }
 
     canAdvance() {
@@ -65,6 +74,9 @@ class Cursor {
     }
 
     processKeyDown(event) {
+        // needed to prevent, for example, a 'space' key from propagating and
+        // causing the window to scroll
+        event.stopPropagation();
         if (event.key.length !== 1) {
             if (event.key === "Backspace") {
                 this.retreat();

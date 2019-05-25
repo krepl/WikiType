@@ -66,20 +66,7 @@ function initializeExercise(title, url) {
         displayResults();
     };
     var cursor = new Cursor(onCompletion);
-
-    // NOTE: I believe we need to wrap `cursor.processKeyDown` in another lambda
-    // because the wrapper lambda captures the Cursor object that we've defined.
-    //
-    // Otherwise, `this` does not refer to the Cursor object in the instance
-    // methods. This is a quirk of how JavaScript defines the `this` keyword.
-    $("#article-content").keydown((event) => {
-        cursor.processKeyDown(event);
-        if (event.key === " ") {
-            // don't scroll the page when a space is entered
-            return false;
-        }
-    });
-
+    $("#article-content").keydown(cursor.processKeyDown);
     setArticleTitle(title, url);
 }
 

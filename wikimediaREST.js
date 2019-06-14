@@ -5,7 +5,6 @@ class Page {
     constructor(title) {
         this.title = title;
         this.getJSONSummary = this.getJSONSummary.bind(this);
-        this.getJSONRandomSummary = this.getJSONRandomSummary.bind(this);
     }
 
     getJSONSummary(callback) {

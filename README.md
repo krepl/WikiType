@@ -1,4 +1,4 @@
-# [WikiType]
+# WikiType
 WikiType is a typing practice web app based off the superb [TypingClub] web
 app.
 
@@ -9,9 +9,9 @@ their own exercises.
 This project is a prototype front-end to the [WikiType API server], although it
 currently fetches data directly from the [Wikimedia REST API].
 
-[Try it out!](https://krepl.github.io/WikiType/src/index.html)
+- [Try it out!](https://krepl.github.io/WikiType/src/)
+- [View the source](https://github.com/krepl/WikiType)
 
-[WikiType]: https://github.com/krepl/WikiType
 [TypingClub]: https://www.typingclub.com/
 [WikiType API server]: https://krepl.github.io/WikiType-API/
 [Wikimedia REST API]: https://en.wikipedia.org/api/rest_v1/#/

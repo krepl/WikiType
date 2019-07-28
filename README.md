@@ -10,7 +10,6 @@ This project is a prototype front-end to the [WikiType API server], although it
 currently fetches data directly from the [Wikimedia REST API].
 
 - [Try it out!](https://krepl.github.io/WikiType/src/)
-- [View the source](https://github.com/krepl/WikiType)
 
 [TypingClub]: https://www.typingclub.com/
 [WikiType API server]: https://krepl.github.io/WikiType-API/
